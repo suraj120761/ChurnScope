@@ -17,24 +17,6 @@ Customer churn is a critical metric for many industries. This app provides:
 
 ---
 
-## Project Structure
-ChurnScope/
-├── churn-frontend/ # React app (Frontend)
-│ ├── public/
-│ ├── src/
-│ └── package.json
-│
-├── backend/ # Django backend
-│ ├── models/ # Banking models
-│ ├── tele_models/ # Telecom models (.sav)
-│ ├── retail_models/ # Retail models (.sav)
-│ ├── views.py # API logic for predictions
-│ └── urls.py, settings.py
-│
-├── saved_notebooks/ # Jupyter notebooks (EDA, training)
-├── .gitignore
-└── README.md
-
 
 > `node_modules/` and `venv/` are excluded via `.gitignore` to avoid large/unnecessary files in the repo.
 
