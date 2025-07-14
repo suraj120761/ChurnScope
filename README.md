@@ -36,11 +36,11 @@ ChurnScope/
 └── README.md
 
 
-> ❌ `node_modules/` and `venv/` are excluded via `.gitignore` to avoid large/unnecessary files in the repo.
+> `node_modules/` and `venv/` are excluded via `.gitignore` to avoid large/unnecessary files in the repo.
 
 ---
 
-## ⚙️ Tech Stack
+## Tech Stack
 
 | Layer       | Tech Used                  |
 |-------------|----------------------------|
@@ -51,7 +51,7 @@ ChurnScope/
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### 1. Clone the Repository
 
@@ -90,11 +90,6 @@ Each endpoint expects JSON input with specific customer details.
 Machine Learning saved in .sav models
 
 
-<img width="1345" height="643" alt="image" src="https://github.com/user-attachments/assets/cac10d5b-1aa8-40f1-a1a8-9a1ca5d0b452" />
-<img width="1339" height="640" alt="image" src="https://github.com/user-attachments/assets/3908f5a4-6612-4a18-9b81-f58560ed47e3" />
-<img width="1339" height="640" alt="image" src="https://github.com/user-attachments/assets/3a398ac9-4d4c-419f-9c22-3a2aa93b2fe5" />
-<img width="1338" height="642" alt="image" src="https://github.com/user-attachments/assets/3262afa3-de78-4391-85db-99a55d36bf82" />
-<img width="1339" height="638" alt="image" src="https://github.com/user-attachments/assets/b06775cf-42d5-465e-9135-2a09d1785dfa" />
 
 
 
