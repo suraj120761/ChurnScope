@@ -42,7 +42,7 @@ ChurnScope/
 
 ---
 
-## ⚙️ Tech Stack
+##  Tech Stack
 
 | Layer       | Tech Used                  |
 |-------------|----------------------------|
@@ -95,7 +95,7 @@ Your React app will open at `http://localhost:3000/`
 
 ---
 
-## 🔌 API Endpoints
+## API Endpoints
 
 | Endpoint                      | Description                       |
 |-------------------------------|-----------------------------------|
@@ -120,7 +120,7 @@ Models are saved as `.sav` files and loaded via `joblib`.
 
 - User authentication
 - Admin dashboard with analytics
-- ☁Cloud deployment (e.g., Railway, EC2)
+- Cloud deployment (e.g., Railway, EC2)
 - Replace `.sav` with cloud-hosted models
 
 ---
