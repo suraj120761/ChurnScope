@@ -1,4 +1,4 @@
-# ChurnScope – Full Stack Churn Prediction App
+#  ChurnScope – Full Stack Churn Prediction App
 
 ChurnScope is an end-to-end machine learning web application that predicts customer churn across three industries: **Telecom**, **Retail**, and **Banking**.
 
@@ -6,23 +6,43 @@ Built with a **React frontend** and a **Django REST backend**, the app provides 
 
 ---
 
-## Project Overview
+##  Project Overview
 
 Customer churn is a critical metric for many industries. This app provides:
 
-- Predictions for whether a customer will churn
-- Separate models and inputs for **Telecom**, **Retail**, and **Banking**
-- Backend preprocessing for consistent feature formatting
-- Real-time API inference with user-friendly UI
+-  Predictions for whether a customer will churn
+-  Separate models and inputs for **Telecom**, **Retail**, and **Banking**
+-  Backend preprocessing for consistent feature formatting
+-  Real-time API inference with user-friendly UI
 
 ---
 
+##  Project Structure
 
-> `node_modules/` and `venv/` are excluded via `.gitignore` to avoid large/unnecessary files in the repo.
+```
+ChurnScope/
+├── churn-frontend/          # React app (Frontend)
+│   ├── public/
+│   ├── src/
+│   └── package.json
+│
+├── backend/                 # Django backend
+│   ├── models/              # Banking models
+│   ├── tele_models/         # Telecom models (.sav)
+│   ├── retail_models/       # Retail models (.sav)
+│   ├── views.py             # API logic for predictions
+│   └── urls.py, settings.py
+│
+├── saved_notebooks/        # Jupyter notebooks (EDA, training)
+├── .gitignore
+└── README.md
+```
+
+>  `node_modules/` and `venv/` are excluded via `.gitignore` to avoid large/unnecessary files in the repo.
 
 ---
 
-## Tech Stack
+## ⚙️ Tech Stack
 
 | Layer       | Tech Used                  |
 |-------------|----------------------------|
@@ -33,46 +53,80 @@ Customer churn is a critical metric for many industries. This app provides:
 
 ---
 
-## Getting Started
+##  Getting Started
 
 ### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/suraj120761/ChurnScope.git
 cd ChurnScope
+```
 
+---
 
-2. Start Backend (Django)
-Make sure Python and pip are installed.
+### 2. Start Backend (Django)
 
+> Make sure Python and pip are installed.
+
+```bash
 cd backend
 python -m venv venv
 source venv/bin/activate  # or venv\Scripts\activate on Windows
 
 pip install -r requirements.txt
 python manage.py runserver
-Your Django server should be running at http://127.0.0.1:8000/
+```
 
-3. Start Frontend (React)
-Make sure Node.js and npm are installed.
+Your Django server should be running at `http://127.0.0.1:8000/`
 
+---
+
+### 3. Start Frontend (React)
+
+> Make sure Node.js and npm are installed.
+
+```bash
 cd churn-frontend
 npm install
 npm start
-Your React app will open at http://localhost:3000/
+```
 
-API Endpoints
-Endpoint	Description
-POST /predict/telecom	Telecom churn prediction
-POST /predict/retail	Retail churn prediction
-POST /predict/banking	Banking churn prediction
+Your React app will open at `http://localhost:3000/`
+
+---
+
+## 🔌 API Endpoints
+
+| Endpoint                      | Description                       |
+|-------------------------------|-----------------------------------|
+| `POST /predict/telecom`       | Telecom churn prediction          |
+| `POST /predict/retail`        | Retail churn prediction           |
+| `POST /predict/banking`       | Banking churn prediction          |
 
 Each endpoint expects JSON input with specific customer details.
 
-Machine Learning saved in .sav models
+---
+
+##  Machine Learning Models
+
+
+Models are saved as `.sav` files and loaded via `joblib`.
+
+---
 
 
 
+##  Future Improvements
 
+- 🔒 User authentication
+- 📊 Admin dashboard with analytics
+- ☁️ Cloud deployment (e.g., Railway, EC2)
+- 📁 Replace `.sav` with cloud-hosted models
 
+---
 
+## Contact
+
+Made by **Suraj**
+
+Feel free to connect via [LinkedIn](#) or open an [issue](https://github.com/suraj120761/ChurnScope/issues) for feedback!
