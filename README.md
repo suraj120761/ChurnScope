@@ -118,10 +118,10 @@ Models are saved as `.sav` files and loaded via `joblib`.
 
 ##  Future Improvements
 
-- 🔒 User authentication
-- 📊 Admin dashboard with analytics
-- ☁️ Cloud deployment (e.g., Railway, EC2)
-- 📁 Replace `.sav` with cloud-hosted models
+- User authentication
+- Admin dashboard with analytics
+- ☁Cloud deployment (e.g., Railway, EC2)
+- Replace `.sav` with cloud-hosted models
 
 ---
 
