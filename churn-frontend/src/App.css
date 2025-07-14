@@ -1,0 +1,213 @@
+/* Reset & Base Layout */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fb;
+  color: #333;
+}
+
+/* Flex layout for sticky footer pattern */
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+}
+
+/* Container Styling */
+.container {
+  display: flex;
+  gap: 40px;
+  padding: 40px;
+  max-width: 1200px;
+  margin: 80px auto 40px auto;
+  background-color: transparent;
+  margin-top: 40px;
+}
+
+.form-section {
+  flex: 2;
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.result-section {
+  flex: 1;
+  background: #f8fbff;
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  height: fit-content;
+}
+
+/* Typography */
+h1, h2, h3 {
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+/* Form Layout */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  font-weight: 500;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+input[type="number"],
+select {
+  padding: 10px 14px;
+  font-size: 15px;
+  border: 1px solid #dce1e7;
+  border-radius: 8px;
+  background-color: #fdfdfd;
+  transition: border-color 0.3s;
+}
+
+input:focus,
+select:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+/* Checkbox Group */
+.form-group-checkbox {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #3498db;
+}
+
+label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #555;
+  font-size: 14px;
+}
+
+/* Submit Button */
+button[type="submit"] {
+  padding: 12px;
+  background: linear-gradient(to right, #3498db, #2c7be5);
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button[type="submit"]:hover {
+  background: linear-gradient(to right, #2c7be5, #3498db);
+  transform: translateY(-1px);
+}
+
+/* Prediction Output */
+.result,
+.error {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.result {
+  color: #28a745;
+}
+
+.error {
+  color: #dc3545;
+}
+
+/* Table Styling (if needed) */
+.result-table {
+  width: 100%;
+  margin-top: 30px;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+.result-table th,
+.result-table td {
+  border: 1px solid #e3e6eb;
+  padding: 12px 10px;
+  text-align: left;
+}
+
+.result-table th {
+  background-color: #f3f6fa;
+  font-weight: 600;
+}
+
+.result-table tr:last-child {
+  background-color: #e8fbe8;
+  font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    padding: 20px;
+    margin: 20px;
+    margin-top: 20px;
+  }
+
+  .form-section,
+  .result-section {
+    width: 100%;
+  }
+
+  input, select, button {
+    font-size: 14px;
+  }
+
+  .result-table th,
+  .result-table td {
+    padding: 8px;
+  }
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
