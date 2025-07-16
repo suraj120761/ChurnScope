@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import axios from "axios";
+import Navbar from "./Navbar";
 
 export default function ChurnPredictorTelecom() {
   const [formData, setFormData] = useState({
@@ -82,9 +83,7 @@ export default function ChurnPredictorTelecom() {
 
   return (
     <div style={{ fontFamily: "Segoe UI, sans-serif", minHeight: "100vh", backgroundColor: "#f5f7fa" }}>
-      <nav style={{ backgroundColor: "#3b00dd", padding: "1rem 2rem" }}>
-        <h1 style={{ color: "white", margin: 0 }}>Telecom Churn Prediction</h1>
-      </nav>
+      <Navbar />
 
       <div style={{
         maxWidth: "1200px",
@@ -97,19 +96,16 @@ export default function ChurnPredictorTelecom() {
         gridTemplateColumns: "1fr 1fr",
         gap: "2rem"
       }}>
-        {/* Form Section */}
         <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
           <h2 style={{ marginBottom: "1rem", color: "#2c3e50" }}>Customer Information</h2>
 
-          {[
-            { name: "monthly_charges", label: "Monthly Charges", type: "number" },
-            { name: "total_charges", label: "Total Charges", type: "number" },
-            { name: "tenure", label: "Tenure", type: "number" },
-          ].map(({ name, label, type }) => (
+          {[{ name: "monthly_charges", label: "Monthly Charges" },
+            { name: "total_charges", label: "Total Charges" },
+            { name: "tenure", label: "Tenure" }].map(({ name, label }) => (
             <div key={name}>
               <label>{label}</label>
               <input
-                type={type}
+                type="number"
                 name={name}
                 value={formData[name]}
                 onChange={handleChange}
@@ -146,7 +142,7 @@ export default function ChurnPredictorTelecom() {
                 "tele_xgboost",
                 "tele_random_forest"
               ] 
-            },
+            }
           ].map(({ name, label, options }) => (
             <div key={name}>
               <label>{label}</label>
@@ -182,21 +178,24 @@ export default function ChurnPredictorTelecom() {
           {result ? (
             <>
               <h3 style={{ color: "#2c3e50" }}>Prediction Results</h3>
-
               <div style={{ backgroundColor: "#f0f4f7", padding: "1rem", borderRadius: "8px", marginBottom: "1rem" }}>
                 <strong>Churn Probability:</strong>
-                <div style={{ fontSize: "2rem", color: result.probability > 0.7 ? "#e74c3c" : result.probability > 0.4 ? "#f39c12" : "#27ae60" }}>
+                <div style={{
+                  fontSize: "2rem",
+                  color: result.probability > 0.7 ? "#e74c3c" : result.probability > 0.4 ? "#f39c12" : "#27ae60"
+                }}>
                   {(result.probability * 100).toFixed(0)}%
                 </div>
               </div>
-
               <div style={{ backgroundColor: "#f0f4f7", padding: "1rem", borderRadius: "8px", marginBottom: "1rem" }}>
                 <strong>Risk Level:</strong>
-                <div style={{ fontSize: "1.2rem", color: result.risk_level === "High" ? "#e74c3c" : result.risk_level === "Medium" ? "#f39c12" : "#27ae60" }}>
+                <div style={{
+                  fontSize: "1.2rem",
+                  color: result.risk_level === "High" ? "#e74c3c" : result.risk_level === "Medium" ? "#f39c12" : "#27ae60"
+                }}>
                   {result.risk_level}
                 </div>
               </div>
-
               <div style={{ backgroundColor: "#f0f4f7", padding: "1rem", borderRadius: "8px" }}>
                 <strong>Recommendation:</strong>
                 <p>{result.recommendation}</p>
