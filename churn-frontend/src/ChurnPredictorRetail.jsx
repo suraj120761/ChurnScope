@@ -1,21 +1,28 @@
 import React, { useState, useRef } from "react";
 import axios from "axios";
+import Navbar from "./Navbar"; // ✅ Adjust path if needed
 
 export default function ChurnPredictorRetail() {
   const [formData, setFormData] = useState({
-    customer_id: "",
+    tenure: "",
+    preferred_login_device: "",
+    city_tier: "",
+    warehouse_to_home: "",
+    preferred_payment_mode: "",
     gender: "",
-    age: "",
-    location: "",
-    membership_status: "",
-    avg_transaction_value: "",
-    purchase_frequency: "",
-    recency_days: "",
-    total_spent: "",
-    preferred_category: "",
-    discount_usage: "",
-    is_loyalty_member: "",
-    model_name: "retail_random_forest",
+    hour_spend_on_app: "",
+    number_of_device_registered: "",
+    prefered_order_cat: "",
+    satisfaction_score: "",
+    marital_status: "",
+    number_of_address: "",
+    complain: "",
+    order_amount_hike_fromlast_year: "",
+    coupon_used: "",
+    order_count: "",
+    day_since_last_order: "",
+    cashback_amount: "",
+    model_name: "random_forest",
   });
 
   const [result, setResult] = useState(null);
@@ -35,18 +42,24 @@ export default function ChurnPredictorRetail() {
     setLoading(true);
 
     const payload = {
-      customer_id: formData.customer_id,
+      tenure: parseInt(formData.tenure),
+      preferred_login_device: formData.preferred_login_device,
+      city_tier: parseInt(formData.city_tier),
+      warehouse_to_home: parseInt(formData.warehouse_to_home),
+      preferred_payment_mode: formData.preferred_payment_mode,
       gender: formData.gender,
-      age: parseInt(formData.age),
-      location: formData.location,
-      membership_status: formData.membership_status,
-      avg_transaction_value: parseFloat(formData.avg_transaction_value),
-      purchase_frequency: parseFloat(formData.purchase_frequency),
-      recency_days: parseInt(formData.recency_days),
-      total_spent: parseFloat(formData.total_spent),
-      preferred_category: formData.preferred_category,
-      discount_usage: formData.discount_usage === "yes",
-      is_loyalty_member: formData.is_loyalty_member === "yes",
+      hour_spend_on_app: parseFloat(formData.hour_spend_on_app),
+      number_of_device_registered: parseInt(formData.number_of_device_registered),
+      prefered_order_cat: formData.prefered_order_cat,
+      satisfaction_score: parseInt(formData.satisfaction_score),
+      marital_status: formData.marital_status,
+      number_of_address: parseInt(formData.number_of_address),
+      complain: parseInt(formData.complain),
+      order_amount_hike_fromlast_year: parseFloat(formData.order_amount_hike_fromlast_year),
+      coupon_used: parseInt(formData.coupon_used),
+      order_count: parseInt(formData.order_count),
+      day_since_last_order: parseInt(formData.day_since_last_order),
+      cashback_amount: parseFloat(formData.cashback_amount),
       model_name: formData.model_name,
     };
 
@@ -65,24 +78,7 @@ export default function ChurnPredictorRetail() {
 
   return (
     <div style={{ minHeight: "100vh", fontFamily: "Segoe UI, sans-serif", backgroundColor: "#f2f6f9" }}>
-      <nav style={{ backgroundColor: "#2c3e50", padding: "1rem 2rem" }}>
-        <div style={{
-          maxWidth: "1200px",
-          margin: "0 auto",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center"
-        }}>
-          <h1 style={{ color: "white", fontSize: "1.5rem" }}>Retail Churn Prediction</h1>
-          <div style={{ display: "flex", gap: "1.5rem" }}>
-            {["Home", "Banking", "Telecom", "Retail"].map((item, idx) => (
-              <a key={idx} href={`/${item.toLowerCase()}`} style={{ color: "white", textDecoration: "none" }}>
-                {item}
-              </a>
-            ))}
-          </div>
-        </div>
-      </nav>
+      <Navbar />
 
       <div style={{
         display: "grid",
@@ -104,20 +100,25 @@ export default function ChurnPredictorRetail() {
         }}>
           <h3 style={{ marginBottom: "1rem", color: "#2c3e50" }}>Customer Information</h3>
 
-          {/* Text and number inputs */}
-          {[
-            { name: "customer_id", label: "Customer ID" },
-            { name: "age", label: "Age", type: "number" },
-            { name: "avg_transaction_value", label: "Avg. Transaction Value", type: "number" },
-            { name: "purchase_frequency", label: "Purchase Frequency", type: "number" },
-            { name: "recency_days", label: "Days Since Last Purchase", type: "number" },
-            { name: "total_spent", label: "Total Spent", type: "number" },
-            { name: "location", label: "Location" },
-          ].map(({ name, label, type = "text" }) => (
+          {/* Input Fields */}
+          {[{ name: "tenure", label: "Tenure (months)" },
+            { name: "city_tier", label: "City Tier" },
+            { name: "warehouse_to_home", label: "Warehouse to Home (km)" },
+            { name: "hour_spend_on_app", label: "Hours Spent on App per Day" },
+            { name: "number_of_device_registered", label: "Number of Devices Registered" },
+            { name: "satisfaction_score", label: "Satisfaction Score (1-5)" },
+            { name: "number_of_address", label: "Number of Addresses" },
+            { name: "complain", label: "Complaints (0/1)" },
+            { name: "order_amount_hike_fromlast_year", label: "Order Amount Hike from Last Year (%)" },
+            { name: "coupon_used", label: "Coupons Used" },
+            { name: "order_count", label: "Total Orders" },
+            { name: "day_since_last_order", label: "Days Since Last Order" },
+            { name: "cashback_amount", label: "Cashback Amount (₹)" }
+          ].map(({ name, label }) => (
             <div key={name}>
               <label style={{ fontWeight: "bold" }}>{label}:</label>
               <input
-                type={type}
+                type="number"
                 name={name}
                 value={formData[name]}
                 onChange={handleChange}
@@ -133,14 +134,13 @@ export default function ChurnPredictorRetail() {
             </div>
           ))}
 
-          {/* Select inputs */}
-          {[
+          {/* Dropdown Fields */}
+          {[{ name: "preferred_login_device", label: "Preferred Login Device", options: ["Mobile Phone", "Phone", "Computer"] },
+            { name: "preferred_payment_mode", label: "Preferred Payment Mode", options: ["UPI", "Cash on Delivery", "Debit Card", "Credit Card", "E wallet", "Net Banking"] },
             { name: "gender", label: "Gender", options: ["Male", "Female"] },
-            { name: "membership_status", label: "Membership Status", options: ["None", "Silver", "Gold"] },
-            { name: "preferred_category", label: "Preferred Category", options: ["Electronics", "Fashion", "Home", "Beauty"] },
-            { name: "discount_usage", label: "Uses Discounts", options: ["yes", "no"] },
-            { name: "is_loyalty_member", label: "Loyalty Program Member", options: ["yes", "no"] },
-            { name: "model_name", label: "Select Model", options: ["retail_random_forest", "retail_xgb", "retail_logistic"] }
+            { name: "prefered_order_cat", label: "Preferred Order Category", options: ["Laptop & Accessory", "Mobile", "Others", "Fashion", "Grocery"] },
+            { name: "marital_status", label: "Marital Status", options: ["Single", "Married", "Divorced"] },
+            { name: "model_name", label: "Select Model", options: ["adaboostclassifier", "decision_tree", "logistic_regression", "random_forest", "support_vector_machine", "xgbclassifier"] }
           ].map(({ name, label, options }) => (
             <div key={name}>
               <label style={{ fontWeight: "bold" }}>{label}:</label>
@@ -203,9 +203,9 @@ export default function ChurnPredictorRetail() {
                   fontWeight: "bold",
                   color:
                     result.probability > 0.7 ? "#e74c3c" :
-                      result.probability > 0.4 ? "#f39c12" : "#27ae60"
+                    result.probability > 0.4 ? "#f39c12" : "#27ae60"
                 }}>
-                  {(result.probability * 100).toFixed(1)}%
+                  {result.probability}%
                 </div>
               </div>
 
@@ -216,7 +216,7 @@ export default function ChurnPredictorRetail() {
                   fontWeight: "bold",
                   color:
                     result.risk_level === "High" ? "#e74c3c" :
-                      result.risk_level === "Medium" ? "#f39c12" : "#27ae60"
+                    result.risk_level === "Medium" ? "#f39c12" : "#27ae60"
                 }}>
                   {result.risk_level}
                 </div>
